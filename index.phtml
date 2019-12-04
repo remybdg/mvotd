@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<title>Music Video of the Day</title>
+    <link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Aldrich|Audiowide" rel="stylesheet"> 
+</head>
+<body>
+	<h1><a href="index.php">MUSIC VIDEO OF THE DAY</a></H1>
+	
+	<div id="menu">
+		<a id="yesterday" class ="menu" href="prevIndex.php?clipId=<?= $prevClip; ?>">Previous</a>
+		<p id="artist" class ="menu"> <?= $clip['Artist']; ?></p>
+		<p id="title" class ="menu"> <?= $clip['Title']; ?></p>
+		<p id="director" class ="menu"> <?= $clip['Director']; ?> </p>
+		<p id="year" class ="menu"> <?= $clip['Year']; ?> </p>
+		<a id="more" class ="menu" href="more.php">More </a>
+	</div>
+
+	<?= $clip['Link']; ?>
+	
+	<div id="footer">
+		<a id="home" href="index.php">HOME</a>
+		<a id="webdev" href="#">@WebDevRem</a>
+	</div>
+	
+</body>
+</html>	

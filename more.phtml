@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<title>Music Video of the Day</title>
+    <link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Aldrich|Audiowide" rel="stylesheet"> 
+</head>
+<body>
+	<h1><a href="index.php" >MUSIC VIDEO OF THE DAY</a></H1>
+	
+	
+	<h2 id="yesterday">Browse by:</h2>
+	<div id="browse">
+		<h3 onclick="myFunction1()" class="dropbtn" id="artist">Artist</h3>
+
+		<ul id="myDropdown1" class="dropdown-content">
+			<?php  foreach($ArtistsUnique as $artist): ?>
+			<li>
+
+					<a href="mv.php?Artist=<?=urlencode($artist);?>"><?= $artist; ?></a>
+
+			</li>
+			<?php endforeach; ?>
+		</ul>
+
+		<h3 onclick="myFunction2()" class="dropbtn" id="title">Title</h3>
+
+		<div id="myDropdown2" class="dropdown-content">
+		<ul >
+			<?php  foreach($Titles as $title): ?>
+			<li>
+
+					<a href="mv.php?Title=<?=urlencode($title['Title']);?>"><?= $title['Title']; ?></a>
+
+			</li>
+			<?php endforeach; ?>
+		</ul>
+</div>
+
+		<h3 onclick="myFunction3()" class="dropbtn" id="director">Director</h3>
+
+		<ul id="myDropdown3" class="dropdown-content">
+			<?php  foreach($DirectorsUnique as $director): ?>
+			<li>
+
+					<a href="mv.php?Director=<?=urlencode($director);?>"><?= $director; ?></a>
+
+			</li>
+			<?php endforeach; ?>
+		</ul>
+	</div>
+	
+	
+	
+	<div id="footer">
+		<a id="home" href="index.php">HOME</a>
+		<a id="webdev" href="#">@WebDevRem</a>
+	</div>
+	<script>
+		function myFunction1() {
+			document.getElementById("myDropdown1").classList.toggle("show");
+		}
+		
+		function myFunction2() {
+			document.getElementById("myDropdown2").classList.toggle("show");
+		}
+
+		function myFunction3() {
+			document.getElementById("myDropdown3").classList.toggle("show");
+		}
+
+		window.onclick = function(event) {
+			console.log(event);
+			if (!event.target.matches('.dropbtn')) {
+			var dropdowns = document.getElementsByClassName("dropdown-content");
+			var i;
+			for (i = 0; i < dropdowns.length; i++) {
+			var openDropdown = dropdowns[i];
+			if (openDropdown.classList.contains('show')) {
+			openDropdown.classList.remove('show');
+			  }
+			}
+		  }
+		} 
+	</script>
+</body>
+</html>		
