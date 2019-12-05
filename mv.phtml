@@ -11,7 +11,7 @@
 	<h1><a href="index.php" >MUSIC VIDEO OF THE DAY</a></H1>
 	
 
-		<ul>
+		<ul id="coversList">
 			<?php  foreach($clips as $clip): ?>
 			<li>
 				<a href="prevIndex.php?clipId=<?= $clip['Id']; ?>">
@@ -27,7 +27,7 @@
 		
 	<div id="footer">
 		<a id="home" href="index.php">HOME</a>
-		<a id="webdev" href="#">@WebDevRem</a>
+		<a id="webdev" href="http://www.webdevrem.fr/">@WebDevRem</a>
 	</div>
 	
 </body>

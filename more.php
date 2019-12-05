@@ -4,7 +4,6 @@ $Artists = getAllArtists();
 $Titles = getAllTitles();
 $Directors = getAllDirectors();
 
-
 $ArtistsUnique = [];
 
 for($cpt= 0; $cpt<count($Artists); $cpt++) {
@@ -28,21 +27,21 @@ echo '</pre>';
 
 function getAllArtists() {
 	
-	$sql = 'SELECT Artist FROM Clip';
+	$sql = 'SELECT Artist FROM clip ORDER BY Artist';
 
 	return queryAll($sql);
 }
 
 function getAllTitles() {
 	
-	$sql = 'SELECT Title FROM Clip';
+	$sql = 'SELECT Title, Id, Artist FROM clip ORDER BY Artist';
 
 	return queryAll($sql);
 }
 
 function getAllDirectors() {
 	
-	$sql = 'SELECT Director FROM Clip';
+	$sql = 'SELECT Director FROM clip ORDER BY Director';
 
 	return queryAll($sql);
 }
@@ -51,7 +50,7 @@ function getAllDirectors() {
 /*-----------------database--------------------*/
 
 function getPDOConnection() {
-	$pdo = new PDO('mysql:host=localhost;dbname=musicvideo','root','',[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
+	$pdo = new PDO('mysql:host=sql24;dbname=poc78091','poc78091','lunchbox',[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
 	$pdo -> exec('SET NAMES UTF8');
 	
 	return $pdo;

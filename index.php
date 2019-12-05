@@ -1,17 +1,18 @@
 <?php
 
 
-$id = $_GET['clipId'];
-
 $clips = getAllClips();
 $clips= sizeof($clips);
+
+$day = dayCount();
+
+$id = ($day % $clips) +1;
 
 //var_dump($id);
 
 $clip = getOneClip($id);
 
 $prevClip = getPrevClip($id, $clips);
-
 
 /*--------------------------------------*/
 
@@ -29,22 +30,39 @@ function getOneClip ($id) {
 	return QueryOne($sql, [$id]);
 }
 
+function dayCount() {
+
+	$date0 = date_create("2019-01-01");
+
+	$currentDate = time();
+
+	$currentDate = date("Y-m-d", $currentDate);
+	
+	$currentDate = date_create($currentDate);
+	
+	$diff = date_diff($date0, $currentDate );
+
+	$diff = ($diff->format("%a"));
+	
+	//var_dump($diff);
+
+	return $diff;
+}
 
 function getPrevClip($id, $clips) {
 	if ( $id < 2) {
 		$prevClip = $clips;
 		return $prevClip;
-		var_dump("0, ",$prevClip);
 	}
 	$prevClip = $id - 1 ;
 	return $prevClip;
 }
 
-
 /*-----------------database--------------------*/
 
 function getPDOConnection() {
 	$pdo = new PDO('mysql:host=sql24;dbname=poc78091','poc78091','lunchbox',[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
+
 	$pdo -> exec('SET NAMES UTF8');
 	
 	return $pdo;

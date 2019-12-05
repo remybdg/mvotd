@@ -13,7 +13,7 @@
 	
 	<h2 id="yesterday">Browse by:</h2>
 	<div id="browse">
-		<h3 onclick="myFunction1()" class="dropbtn" id="artist">Artist</h3>
+		<h3 onclick="myFunction(event)" class="dropbtn resultTitle" id="artistRT">Artist</h3>
 
 		<ul id="myDropdown1" class="dropdown-content">
 			<?php  foreach($ArtistsUnique as $artist): ?>
@@ -25,21 +25,44 @@
 			<?php endforeach; ?>
 		</ul>
 
-		<h3 onclick="myFunction2()" class="dropbtn" id="title">Title</h3>
+		<h3 onclick="myFunction(event)" class="dropbtn resultTitle" id="titleRT">Title</h3>
 
 		<div id="myDropdown2" class="dropdown-content">
-		<ul >
-			<?php  foreach($Titles as $title): ?>
-			<li>
+		<div id="titleResultContainer">
+			<ul>
+				<?php  foreach($Titles as $title): ?>
+				<li>
 
-					<a href="mv.php?Title=<?=urlencode($title['Title']);?>"><?= $title['Title']; ?></a>
+						<a href="prevIndex.php?clipId=<?= $title['Id']; ?>" id="titleResultTitle"><?= $title['Title']; ?></a>
 
-			</li>
-			<?php endforeach; ?>
-		</ul>
-</div>
+				</li>
 
-		<h3 onclick="myFunction3()" class="dropbtn" id="director">Director</h3>
+				<?php endforeach; ?>
+			</ul>
+			<ul>
+				<?php  foreach($Titles as $title): ?>
+				<li>
+
+						<a href="prevIndex.php?clipId=<?= $title['Id']; ?>"><span> by </span></a>
+
+				</li>
+
+				<?php endforeach; ?>
+			</ul>
+			<ul>
+				<?php  foreach($Titles as $title): ?>
+				<li>
+
+						<a href="prevIndex.php?clipId=<?= $title['Id']; ?>" id="titleResultArtist"><?= $title['Artist']; ?></a>
+
+				</li>
+
+				<?php endforeach; ?>
+			</ul>
+		</div>	
+		</div>
+
+		<h3 onclick="myFunction(event)" class="dropbtn resultTitle" id="directorRT">Director</h3>
 
 		<ul id="myDropdown3" class="dropdown-content">
 			<?php  foreach($DirectorsUnique as $director): ?>
@@ -56,34 +79,52 @@
 	
 	<div id="footer">
 		<a id="home" href="index.php">HOME</a>
-		<a id="webdev" href="#">@WebDevRem</a>
+		<a id="webdev" href="http://www.webdevrem.fr/">@WebDevRem</a>
 	</div>
 	<script>
-		function myFunction1() {
-			document.getElementById("myDropdown1").classList.toggle("show");
+		function myFunction(event) {
+			console.log(event.target);
+
+			if (event.target == document.getElementById("artistRT")) {
+				document.getElementById("myDropdown1").classList.toggle("show");
+				document.getElementById("myDropdown2").classList.remove("show");
+				document.getElementById("myDropdown3").classList.remove("show");
+			}
+			else if (event.target == document.getElementById("titleRT")) {
+				document.getElementById("myDropdown2").classList.toggle("show");
+				document.getElementById("myDropdown1").classList.remove("show");
+				document.getElementById("myDropdown3").classList.remove("show");				
+				
+			}			
+			else if (event.target == document.getElementById("directorRT")) {
+				document.getElementById("myDropdown3").classList.toggle("show");
+				document.getElementById("myDropdown2").classList.remove("show");
+				document.getElementById("myDropdown1").classList.remove("show");				
+				
+			}			
 		}
 		
 		function myFunction2() {
-			document.getElementById("myDropdown2").classList.toggle("show");
+			document.getElementById("myDropdown2").classList.add("show");
 		}
 
 		function myFunction3() {
-			document.getElementById("myDropdown3").classList.toggle("show");
+			document.getElementById("myDropdown3").classList.add("show");
 		}
-
+/*
 		window.onclick = function(event) {
 			console.log(event);
 			if (!event.target.matches('.dropbtn')) {
-			var dropdowns = document.getElementsByClassName("dropdown-content");
-			var i;
-			for (i = 0; i < dropdowns.length; i++) {
-			var openDropdown = dropdowns[i];
-			if (openDropdown.classList.contains('show')) {
-			openDropdown.classList.remove('show');
-			  }
+				var dropdowns = document.getElementsByClassName("dropdown-content");
+				var i;
+				for (i = 0; i < dropdowns.length; i++) {
+					var openDropdown = dropdowns[i];
+					if (openDropdown.classList.contains('show')) {
+					openDropdown.classList.remove('show');
+					}
+				}
 			}
-		  }
-		} 
+		} */
 	</script>
 </body>
 </html>		

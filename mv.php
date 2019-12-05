@@ -20,21 +20,21 @@ else if (!empty($_GET['Director'])) {
 
 function getAllArtist($Artist) {
 	
-	$sql = 'SELECT Id,Title,Artist ,Director ,Year, Link FROM Clip WHERE Artist=?';
+	$sql = 'SELECT Id,Title,Artist ,Director ,Year, Link FROM clip WHERE Artist=?';
 
 	return queryAll($sql,[$Artist]);
 }
 
 function getAllTitle($Title) {
 	
-	$sql = 'SELECT Id,Title,Artist ,Director ,Year, Link FROM Clip WHERE Title=?';
+	$sql = 'SELECT Id,Title,Artist ,Director ,Year, Link FROM clip WHERE Title=?';
 
 	return queryAll($sql,[$Title]);
 }
 
 function getAllDirector($Director) {
 	
-	$sql = 'SELECT Id,Title,Artist ,Director ,Year, Link FROM Clip WHERE Director=?';
+	$sql = 'SELECT Id,Title,Artist ,Director ,Year, Link FROM clip WHERE Director=?';
 
 	return queryAll($sql,[$Director]);
 }
@@ -42,7 +42,7 @@ function getAllDirector($Director) {
 /*-----------------database--------------------*/
 
 function getPDOConnection() {
-	$pdo = new PDO('mysql:host=localhost;dbname=musicvideo','root','',[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
+	$pdo = new PDO('mysql:host=sql24;dbname=poc78091','poc78091','lunchbox',[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
 	$pdo -> exec('SET NAMES UTF8');
 	
 	return $pdo;
