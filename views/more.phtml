@@ -16,10 +16,10 @@
 		<h3 onclick="myFunction1()" class="dropbtn" id="artist">Artist</h3>
 
 		<ul id="myDropdown1" class="dropdown-content">
-			<?php  foreach($ArtistsUnique as $artist): ?>
+			<?php  foreach($Artists as $artist): ?>
 			<li>
 
-					<a href="mv.php?Artist=<?=urlencode($artist);?>"><?= $artist; ?></a>
+					<a href="index.php?p=more&Artist=<?=urlencode($artist['Artist']);?>"><?= $artist['Artist']; ?></a>
 
 			</li>
 			<?php endforeach; ?>
@@ -32,7 +32,7 @@
 			<?php  foreach($Titles as $title): ?>
 			<li>
 
-					<a href="mv.php?Title=<?=urlencode($title['Title']);?>"><?= $title['Title']; ?></a>
+					<a href="index.php?clipId=<?=urlencode($title['Id']);?>"><?= $title['Title']; ?></a>
 
 			</li>
 			<?php endforeach; ?>
@@ -42,10 +42,10 @@
 		<h3 onclick="myFunction3()" class="dropbtn" id="director">Director</h3>
 
 		<ul id="myDropdown3" class="dropdown-content">
-			<?php  foreach($DirectorsUnique as $director): ?>
+			<?php  foreach($Directors as $director): ?>
 			<li>
 
-					<a href="mv.php?Director=<?=urlencode($director);?>"><?= $director; ?></a>
+					<a href="index.php?p=more&Director=<?=urlencode($director['Director']);?>"><?= $director['Director']; ?></a>
 
 			</li>
 			<?php endforeach; ?>
