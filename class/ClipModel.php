@@ -43,7 +43,7 @@ class Clipmodel extends AbstractModel{
 	
 	function getAllTitles() {
 		
-		$sql = 'SELECT DISTINCT Title, Id FROM Clip';
+		$sql = 'SELECT DISTINCT Title, Id, Artist FROM Clip';
 	
 		return $this->db->queryAll($sql);
 	}
@@ -58,7 +58,7 @@ class Clipmodel extends AbstractModel{
 	function getAllByArtist($Artist) {
 	
 		$sql = 'SELECT Id,Title,Artist ,Director ,Year, Link FROM Clip WHERE Artist="'.$Artist.'"';
-		var_dump($sql);
+
 		return $this->db->queryAll($sql);
 	}
 	

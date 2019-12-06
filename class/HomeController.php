@@ -5,6 +5,7 @@ include 'class/ClipModel.php';
 class HomeController {
 
 	public function Index() {
+		$page = 'home';
 
 		// si l'url transmet un id de clip, on le récupère
 		if (!empty($_GET)) {
@@ -33,7 +34,7 @@ class HomeController {
 		$prevClip = $clipModel->getPrevClip($id, $clips);
 
 
-		include 'views/home.phtml';
+		include 'views/layout.phtml';
 
 	}
 

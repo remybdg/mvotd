@@ -1,19 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="utf-8">
-	<title>Music Video of the Day</title>
-    <link rel="stylesheet" href="style.css">
-	<link href="https://fonts.googleapis.com/css?family=Aldrich|Audiowide" rel="stylesheet"> 
-</head>
-<body>
-	<h1><a href="index.php" >MUSIC VIDEO OF THE DAY</a></H1>
-	
 	
 	<h2 id="yesterday">Browse by:</h2>
 	<div id="browse">
-		<h3 onclick="myFunction1()" class="dropbtn" id="artist">Artist</h3>
+		<h3 onclick="myFunction(event)" class="dropbtn resultTitle" id="artistRT">Artist</h3>
 
 		<ul id="myDropdown1" class="dropdown-content">
 			<?php  foreach($Artists as $artist): ?>
@@ -25,21 +16,44 @@
 			<?php endforeach; ?>
 		</ul>
 
-		<h3 onclick="myFunction2()" class="dropbtn" id="title">Title</h3>
+		<h3 onclick="myFunction(event)" class="dropbtn resultTitle" id="titleRT">Title</h3>
 
 		<div id="myDropdown2" class="dropdown-content">
-		<ul >
-			<?php  foreach($Titles as $title): ?>
-			<li>
+		<div id="titleResultContainer">
+			<ul id="titleList">
+				<?php  foreach($Titles as $title): ?>
+				<li>
 
-					<a href="index.php?clipId=<?=urlencode($title['Id']);?>"><?= $title['Title']; ?></a>
+						<a href="index.php?clipId=<?= $title['Id']; ?>" class="titleResultTitle <?= 'id'.$title['Id']; ?>" data-id='<?= $title['Id']; ?>' onmouseenter='matchHoverColor(event, "artistList")' onmouseleave='setOriginalColor(event, "artistList")'><?= $title['Title']; ?></a>
 
-			</li>
-			<?php endforeach; ?>
-		</ul>
-</div>
+				</li>
 
-		<h3 onclick="myFunction3()" class="dropbtn" id="director">Director</h3>
+				<?php endforeach; ?>
+			</ul>
+			<ul>
+				<?php  foreach($Titles as $title): ?>
+				<li>
+
+						<a href="index.php?clipId=<?= $title['Id']; ?>"><span> by </span></a>
+
+				</li>
+
+				<?php endforeach; ?>
+			</ul>
+			<ul id="artistList">
+				<?php  foreach($Titles as $title): ?>
+				<li>
+
+						<a href="index.php?clipId=<?= $title['Id']; ?>" class="titleResultArtist <?= 'id'.$title['Id']; ?>" data-id='<?= $title['Id']; ?>' onmouseenter='matchHoverColor(event, "titleList")' onmouseleave='setOriginalColor(event, "titleList")'><?= $title['Artist']; ?></a>
+
+				</li>
+
+				<?php endforeach; ?>
+			</ul>
+		</div>	
+		</div>
+
+		<h3 onclick="myFunction(event)" class="dropbtn resultTitle" id="directorRT">Director</h3>
 
 		<ul id="myDropdown3" class="dropdown-content">
 			<?php  foreach($Directors as $director): ?>
@@ -52,38 +66,3 @@
 		</ul>
 	</div>
 	
-	
-	
-	<div id="footer">
-		<a id="home" href="index.php">HOME</a>
-		<a id="webdev" href="#">@WebDevRem</a>
-	</div>
-	<script>
-		function myFunction1() {
-			document.getElementById("myDropdown1").classList.toggle("show");
-		}
-		
-		function myFunction2() {
-			document.getElementById("myDropdown2").classList.toggle("show");
-		}
-
-		function myFunction3() {
-			document.getElementById("myDropdown3").classList.toggle("show");
-		}
-
-		window.onclick = function(event) {
-			console.log(event);
-			if (!event.target.matches('.dropbtn')) {
-			var dropdowns = document.getElementsByClassName("dropdown-content");
-			var i;
-			for (i = 0; i < dropdowns.length; i++) {
-			var openDropdown = dropdowns[i];
-			if (openDropdown.classList.contains('show')) {
-			openDropdown.classList.remove('show');
-			  }
-			}
-		  }
-		} 
-	</script>
-</body>
-</html>		

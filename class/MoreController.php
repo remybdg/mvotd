@@ -7,18 +7,19 @@ class MoreController extends AbstractModel{
 
 	
 	public function showSearchFields() {
+		$page = 'more';
 
 		$clipModel = new ClipModel;
 		$Artists = $clipModel->getAllArtists();
 		$Titles = $clipModel->getAllTitles();
 		$Directors = $clipModel->getAllDirectors();
 
-		include 'views/more.phtml';
+		include 'views/layout.phtml';
 
 	}
 
 	public function showSearchResult() {
-		
+		 $page = 'result';
 		$clipModel = new ClipModel;
 
 		if (!empty($_GET['Artist'])) {
@@ -34,7 +35,7 @@ class MoreController extends AbstractModel{
 			$clips = $clipModel->getAllByDirector($Director);
 		}
 
-		include 'views/result.phtml';
+		include 'views/layout.phtml';
 	}
 
 }
